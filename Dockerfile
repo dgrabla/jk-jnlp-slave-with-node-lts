@@ -5,6 +5,12 @@ FROM jenkinsci/jnlp-slave:latest
 
 USER root
 
+# HOST is used by many frameworks to specify from where to accept traffic
+ENV HOST 0.0.0.0
+
+# Nuxt
+EXPOSE 3000
+
 # curl to install node
 RUN apt-get update \
     && apt-get install -y jq curl
