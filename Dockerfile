@@ -1,6 +1,8 @@
 # Jenkins JNPL slave with node lts + cypress
 # Base is the latest official jnlp-slace, which at the moment is a debian stretch image
 
+# DGB 2020-08-31 12:36 Added libgdm for cypress 5
+
 FROM jenkinsci/jnlp-slave:latest
 
 USER root
@@ -30,6 +32,7 @@ RUN apt-get install --no-install-recommends -y \
   libnss3 \
   libxss1 \
   libasound2 \
+  libgbm1 \
   libxtst6 \
   xauth \
   xvfb
@@ -59,6 +62,5 @@ USER jenkins
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
-  "yarn version:    $(yarn -v) \n" \
   "debian version:  $(cat /etc/debian_version) \n" \
   "user:            $(whoami) \n"
